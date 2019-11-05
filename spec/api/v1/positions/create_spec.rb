@@ -24,7 +24,7 @@ RSpec.describe "positions#create", type: :request do
             }
           }
         }
-      }
+      }.as_json
     end
 
     it 'works' do
