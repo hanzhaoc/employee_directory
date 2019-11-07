@@ -1,6 +1,68 @@
 {
   "resources": [
     {
+      "name": "DepartmentResource",
+      "type": "departments",
+      "description": null,
+      "attributes": {
+        "id": {
+          "type": "integer_id",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "name": {
+          "type": "string",
+          "readable": true,
+          "writable": true,
+          "description": null
+        }
+      },
+      "extra_attributes": {
+      },
+      "sorts": {
+        "id": {
+        },
+        "name": {
+        }
+      },
+      "filters": {
+        "id": {
+          "type": "integer_id",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "operators": [
+            "eq",
+            "not_eq",
+            "eql",
+            "not_eql",
+            "prefix",
+            "not_prefix",
+            "suffix",
+            "not_suffix",
+            "match",
+            "not_match"
+          ]
+        }
+      },
+      "relationships": {
+        "positions": {
+          "type": "has_many",
+          "description": null,
+          "resource": "PositionResource"
+        }
+      }
+    },
+    {
       "name": "EmployeeResource",
       "type": "employees",
       "description": null,
@@ -222,6 +284,17 @@
             "lt",
             "lte"
           ]
+        },
+        "department_id": {
+          "type": "integer",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
         }
       },
       "relationships": {
@@ -229,11 +302,35 @@
           "type": "belongs_to",
           "description": null,
           "resource": "EmployeeResource"
+        },
+        "department": {
+          "type": "belongs_to",
+          "description": null,
+          "resource": "DepartmentResource"
         }
       }
     }
   ],
   "endpoints": {
+    "/api/v1/departments": {
+      "actions": {
+        "index": {
+          "resource": "DepartmentResource"
+        },
+        "show": {
+          "resource": "DepartmentResource"
+        },
+        "create": {
+          "resource": "DepartmentResource"
+        },
+        "update": {
+          "resource": "DepartmentResource"
+        },
+        "destroy": {
+          "resource": "DepartmentResource"
+        }
+      }
+    },
     "/api/v1/employees": {
       "actions": {
         "index": {

@@ -7,6 +7,7 @@ RSpec.describe "positions#create", type: :request do
   end
   describe 'basic create' do
     let!(:employee) { create(:employee) }
+    let!(:department) { create(:department) }
 
     let(:params) do
       attributes_for(:position)
@@ -16,15 +17,23 @@ RSpec.describe "positions#create", type: :request do
       {
         data: {
           type: 'positions',
-          attributes: {},
+          attributes: { },
           relationships: {
             employee: {
-              data: employee.id.to_s,
-              type: 'employees'
+              data: {
+                type: 'employees',
+                id: employee.id.to_s
+              }
+            },
+            department: {
+              data: {
+                type: 'departments',
+                id: department.id.to_s
+              }
             }
           }
         }
-      }.as_json
+      }
     end
 
     it 'works' do

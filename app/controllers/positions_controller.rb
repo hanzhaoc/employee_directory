@@ -10,7 +10,10 @@ class PositionsController < ApplicationController
   end
 
   def create
+    puts params
     position = PositionResource.build(params)
+    puts params
+    puts position
 
     if position.save
       render jsonapi: position, status: 201

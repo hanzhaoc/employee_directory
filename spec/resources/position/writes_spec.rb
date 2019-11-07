@@ -4,6 +4,7 @@ RSpec.describe PositionResource, type: :resource do
   describe 'creating' do
 
     let!(:employee) { create(:employee) }
+    let!(:department) { create(:department) }
 
     let(:payload) do
       {
@@ -12,12 +13,20 @@ RSpec.describe PositionResource, type: :resource do
           attributes: { },
           relationships: {
             employee: {
-              data: employee.id.to_s,
-              type: 'employees'
+              data: {
+                type: 'employees',
+                id: employee.id.to_s
+              }
+            },
+            department: {
+              data: {
+                type: 'departments',
+                id: department.id.to_s
+              }
             }
           }
         }
-      }.deep_stringify_keys!
+      }
     end
 
     let(:instance) do

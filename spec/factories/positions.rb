@@ -2,6 +2,7 @@
 FactoryBot.define do
   factory :position do
     employee
+    department
 
     title { Faker::Job.title }
 
